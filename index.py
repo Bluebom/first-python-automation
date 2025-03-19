@@ -11,5 +11,7 @@ while True:
         pyautogui.moveTo(imgPosition, duration=1);
 
         pyautogui.click(imgPosition);
+
+        pyautogui.moveTo(imgPosition.x, imgPosition.y + 100, duration=0.5);
     except pyautogui.ImageNotFoundException:
         print('Image not found');
