@@ -1,17 +1,25 @@
 import pyautogui;
 import time;
 
-while True:
-    time.sleep(5);
-    pyautogui.PAUSE = 0.5;
+def wait_for_and_click_modal():
+    button_image = 'target.png'  # Save a screenshot of the accept button
+    
+    while True:
+        time.sleep(3);
+        pyautogui.PAUSE = 3;
+        try:
+            # Look for the button on screen
+            button_location = pyautogui.locateOnScreen(button_image, confidence=0.8)
+            
+            if button_location:
+                button_x, button_y = pyautogui.center(button_location)
+                
+                pyautogui.click(button_x, button_y)
+                print("Clicked!")
+                
+        except Exception as e:
+            print(f"Error: {e}")
+        
 
-    try:
-        imgPosition = pyautogui.locateCenterOnScreen('target.png', confidence=0.5);
-
-        pyautogui.moveTo(imgPosition, duration=1);
-
-        pyautogui.click(imgPosition);
-
-        pyautogui.moveTo(imgPosition.x, imgPosition.y + 100, duration=0.5);
-    except pyautogui.ImageNotFoundException:
-        print('Image not found');
+# Run the function
+wait_for_and_click_modal()
